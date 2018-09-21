@@ -18,7 +18,6 @@ class Shelter extends Component {
         <h1>{this.state.name}</h1>
         <img src={this.state.foto}></img>
         <h3>{this.state.animal}-- {this.state.raza}--{this.state.location}</h3>
-        
       </div>
     );
   }

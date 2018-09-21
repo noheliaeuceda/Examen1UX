@@ -17,7 +17,8 @@ class Form extends Component {
       raza: "",
       name: "",
       foto: "",
-      shelters: []
+      shelters: [],
+      compEjemplo: ''
     };
   }
   handleChange = event => {
@@ -57,33 +58,39 @@ class Form extends Component {
       let names = arrPets.map(pet => pet.name.$t);
       let fotos = arrPets.map(pet => pet.media.photos.photo[0].$t);
 
-      this.setState({
-        name: names,
-        foto: fotos,
-      });
-
       for (let i = 0; i < names.length; i++) {
         arrShelters.push(
-          // <Shelter
-          //   key={i}
-          //   name={names[i]}
-          //   foto={fotos[i]}
-          //   animal={this.state.animal}
-          //   raza={this.state.raza}
-          //   location={this.state.location}
-          // />
-          <h1 key={i}>hola</h1>
-          );      
+          <Shelter
+            key={i}
+            name={names[i]}
+            foto={fotos[i]}
+            animal={this.state.animal}
+            raza={this.state.raza}
+            location={this.state.location}
+          />
+          );
         }
-    });c
-    console.log(arrShelters)
-    this.setState({shelters: arrShelters});
+        this.setState({
+          shelters: arrShelters
+        });
+    });
   }
 
   mostrarShelter() {
-    return (
-      this.state.shelters
-    );
+    console.log(this.state.shelters.length)
+    if (this.state.shelters.length > 0) {
+      console.log("funcionaa")
+      return (
+        <div>
+          {this.state.shelters}
+        </div>
+      );
+    } else {
+      console.log("Entra")
+      return (
+        <h1>No hay shelters aun!</h1>
+      );
+    }
   }
 
   render() {
@@ -111,9 +118,8 @@ class Form extends Component {
           <button type="submit">
             Buscar!
           </button>
-          {this.state.shelters}
-          {this.mostrarShelter()}
         </form>
+        {this.mostrarShelter()}
       </div>
     );
   }
